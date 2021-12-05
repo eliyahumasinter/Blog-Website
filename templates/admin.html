@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Page{% endblock %}
+
+{% block content %}
+
+<form method="POST" action= "{{ url_for('submitnewpost')}}" enctype="multipart/form-data">
+  <input type="text" id="title" name="title" placeholder="Title"><br>
+  <textarea id="post" name="post" placeholder="Post"></textarea><br>
+  <input type="file" name="picture" multiple>
+  <input type="submit" value="Submit">
+</form>
+
+<br>
+<br>
+
+Send an <strong>email</strong>:
+<form method="POST" action= "{{ url_for('sendnotifications') }}">
+  <input type="text" id="title" name="title" placeholder="Title of post">
+  <input type="submit" value="Send Notification"><br>
+</form>
+<br>
+
+<details>
+  <summary>See Emails</summary>
+  Delete an <strong>Email</strong>:
+  <form method="POST" action= "{{ url_for('deleteemail') }}">
+    <input type="text" id="title" name="id" placeholder="ID #">
+    <input type="submit" value="Delete"><br>
+  </form>
+  <br>
+
+  {% for email in emails %}
+    ID: {{ email.id }}<br>
+    Email: {{ email.email }}
+    <br>
+  {% endfor %}
+</details>
+
+<br><hr><br>
+
+<details>
+  <summary>See Posts</summary>
+  Delete a <strong>Post</strong>:
+  <form method="POST" action= "{{ url_for('deletepost') }}">
+    <input type="text" id="title" name="id" placeholder="ID #">
+    <input type="submit" value="Delete"><br>
+  </form>
+  <br>
+
+  {% for post in content %}
+  ID: {{ post.id }}<br>
+  TITLE: {{ post.title }}<br>
+  CONTENT: {{ post.content }}<br>
+
+  {% if post.image %}
+  IMAGES:
+  {% for i in post.image %}
+  <a href="{{ "static/images/" + i }}">{{  i }}</a><br>
+  {% endfor %}
+  {% endif %}
+
+  <hr>
+  {% endfor %}
+</details>
+
+<br><hr><br>
+
+{% endblock %}

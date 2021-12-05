@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <title>{% block title %}{% endblock %}</title>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #333;">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto" style="color: white;">
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('home')}}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('contact')}}">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('notifications')}}">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('about')}}">About</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="POST" action="{{ url_for('goToPost') }}">
+          <input class="form-control mr-sm-2" list="posts" name="postname" id="postname" placeholder="Search Post Titles">
+          <datalist id="posts">
+            {% for i in getPostTitles() %}
+            <option value="{{ i[0] }}">
+            {% endfor %}
+          </datalist>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go!</button>
+        </form>
+      </div>
+    </nav>
+<!--
+
+
+      <form ">
+        <input type="submit" value = "Go!" style="float:right;">
+        <input list="posts"  placeholder="Search Post Titles" style="float: right;">
+
+      </form>
+    </ul>
+  </nav>
+ -->  <br>
+  </head>
+
+
+  <body>
+
+
+    <br>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class=flashes>
+          {% for message in messages %}
+          <div id="flash-message"  class="success-flash">
+            <span id="flash">{{ message }}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="disappear();" style="float:right;">
+                 <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+    {% block content %}
+
+    {% endblock %}
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+
+  </body>
+  </div>
+</html>
+
+
+<script type="text/javascript">
+  function disappear() {
+    document.getElementById("flash-message").style.display = 'none'
+  }
+</script>
+
+
+<script type="text/javascript">
+var like = document.getElementById('like');
+var x = document.getElementById("")
+like.onclick = increment;
+function increment() {
+    var value = parseInt(document.getElementById('like-number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('like-number').innerHTML = value;
+  return false;
+}
+</script>

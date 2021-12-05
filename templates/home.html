@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+{% block content %}
+    {% for post in posts %}
+    <div  class="post" id="post-{{ post.title }}">
+        <h5 id="date">{{ post.date_posted.strftime('%m-%d-%Y') }}</h5>
+        <h1 id="post" style="padding-bottom: 10em;">{{ post.title }}</h1>
+        <hr style="visibility: hidden;">
+
+        <details>
+            <summary>See Details</summary>
+            <p style="white-space: pre-wrap;">{{ post.content }}</p>
+            <br>
+            {% if post.image %}
+                {% for i in post.image %}
+                    <a id="picture-link" href="static/images/{{ optomize(i) }}" target="_blank"><img class="expand" src="static/images/{{ optomize(i) }}"></a>
+                {% endfor %}
+            {% endif %}
+            <br>
+        </details>
+
+        <h4 class="thumbs-up">{{ post.likes }}
+            <a class="thumbs-up-picture" id="like-{{ post.id }}" href="#" title="Like this post"  data-toggle="modal" data-target="#prompt-{{ post.id}}">
+                <i class="bi-hand-thumbs-up"></i>
+            </a>
+        </h4>
+        <br>
+    </div>
+    <hr>
+    <div class="modal fade" id="prompt-{{ post.id}}" tabindex="-1" role="dialog" aria-labelledby="prompt-{{ post.id}}Label" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="prompt-{{ post.id}}Label">Like: "{{post.title}}"</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="modal-text">To ensure that the like count isn't flooded, you must be signed up for notifications to like a post</div>
+            <br>
+            <div class="form-group-row">
+                <form method="POST" action= "{{ url_for('likepost', postID=post.id)}}">
+                  <label for="email">Email:</label>
+                  <input type="email" class="form-control col-sm-10" id="email" name="email" placeholder="name@email.com" required / style="margin-bottom: 1em; " >
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                      </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+
+<!-- Modal -->
+
+{% endblock %}
+
+

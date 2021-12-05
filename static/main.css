@@ -1,0 +1,140 @@
+body {
+    background-color: lightblue !important;
+}
+
+
+.post {
+     background-color: rgb(100,100,100);
+     padding: 2em;
+     margin: 1em;"
+}
+
+
+/*Flashing*/
+.success-flash {
+    background-color: rgb(70 255 70 / 53%);
+    padding: 1em;
+    border-radius: 10px;
+}
+
+.success-flash {
+    background-color: rgb(228 37 37 / 75%);
+    padding: 1em;
+    border-radius: 10px;
+}
+
+p {
+  padding-right: 1em;
+  padding-left:  1em;
+  padding-top:  1em;
+  float:  center;
+  font-size: 150%;
+
+}
+
+
+img.expand {
+    width:  200px;
+    height:  auto;
+    border: solid 2px black;
+    transition: width 0.3s ease-in-out;
+}
+
+img.expand:hover {
+    border: solid 2px white;
+    width: 300px;
+    height:  auto%;
+}
+
+img.like-button {
+    margin-top: 1em;
+    float:  right;
+}
+
+img.like-button:hover {
+    content:  url("/static/images/likebuttonhover.png");
+}
+
+details {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: .5em .5em 0;
+}
+
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+
+details[open] > summary:before {
+  transform: rotate(90deg) 0.3s ease-in-out;;
+
+}
+
+
+
+
+/*POST ATTRIBUTES*/
+#post {
+    display: inline;
+}
+
+#date {
+    display:inline;
+    float: right;
+    margin-top: 1em;
+    color:  rgb(175, 175, 175);
+}
+#picture-link {
+    color: rgb(175, 175, 175);
+}
+
+#picture-link:hover {
+    color: rgb(100, 100, 100);
+}
+
+#modal-text{
+    padding-bottom: 0.1em;
+}
+
+.contact li {
+    padding: 0.5em;
+}
+
+.code-example {
+    padding-left: 2em;
+}
+.nav-link{
+    color:  white !important;
+    padding-right: 2rem !important;
+    font-size: 1.25em;
+}
+
+.nav-link:hover{
+    color:  black !important;
+}
+
+.thumbs-up-picture {
+    color: black;
+}
+
+.thumbs-up-picture:hover {
+    color: #add8e6;
+}
+
+.thumbs-up{
+    float: right;
+    padding-top: 0.5em;
+}
+
+.submit-button{
+    color:  #add8e6 !important;
+    background-color: rgb(51,51,51) !important;
+    border-color: #add8e6 !important;
+}
+
+
+.submit-button:hover{
+    background-color: rgb(153,153,153) !important;
+}
